@@ -8,6 +8,8 @@ import RunButton from "../components/RunButton/RunButton.jsx";
 
 import { DEFAULT_CODE } from "../constants";
 
+import { executeCppCode } from "../services/compileService";
+
 function Home() {
 
   const [code, setCode] = useState(DEFAULT_CODE);
@@ -16,8 +18,14 @@ function Home() {
 
   const [output, setOutput] = useState("");
 
-  const runCode = () => {
+  const runCode = async () => {
+
     setOutput("Running...");
+
+    const result = await executeCppCode(code, input);
+
+    setOutput(result);
+
   };
 
   return (
