@@ -1,0 +1,30 @@
+.input-panel {
+  flex: 1;
+  background-color: #1f2937;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+
+  border-bottom: 1px solid #374151;
+}
+
+.input-panel h2 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.input-panel textarea {
+  flex: 1;
+
+  resize: none;
+
+  background-color: #111827;
+  color: white;
+
+  border: none;
+
+  padding: 10px;
+
+  outline: none;
+}
