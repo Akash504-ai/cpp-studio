@@ -1,0 +1,24 @@
+.output-panel {
+  flex: 1;
+  background-color: #111827;
+
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.output-panel h2 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.output-panel pre {
+  flex: 1;
+
+  color: #22c55e;
+
+  overflow-y: auto;
+
+  white-space: pre-wrap;
+}
