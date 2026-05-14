@@ -3,11 +3,7 @@ using namespace std;
 
 int main() {
 
-    int a, b;
-
-    cin >> a >> b;
-
-    cout << a + b;
+    cout << "Welcome to CPP Studio";
 
     return 0;
 }

@@ -1,12 +1,15 @@
 import "./runButton.css";
 
-function RunButton({ runCode }) {
+function RunButton({ runCode, loading }) {
 
   return (
     <div className="run-container">
 
-      <button onClick={runCode}>
-        Run Code
+      <button
+        onClick={runCode}
+        disabled={loading}
+      >
+        {loading ? "Running..." : "Run Code"}
       </button>
 
     </div>
