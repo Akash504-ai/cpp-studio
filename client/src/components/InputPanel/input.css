@@ -1,30 +1,80 @@
+/* input.css */
+
 .input-panel {
   flex: 1;
-  background-color: #1f2937;
-  padding: 10px;
-
+  background-color: #121212; /* Deep background */
   display: flex;
   flex-direction: column;
-
-  border-bottom: 1px solid #374151;
+  border: 1px solid #2d2d2d;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
 }
 
-.input-panel h2 {
-  color: white;
-  margin-bottom: 10px;
+/* Header styling to match the Editor tab */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #1a1a1a;
+  border-bottom: 1px solid #2d2d2d;
 }
 
+.panel-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8; /* Slate-400 */
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.panel-icon {
+  width: 14px;
+  height: 14px;
+  color: #3b82f6; /* Accent blue */
+}
+
+.clear-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.clear-btn:hover {
+  background-color: #2d2d2d;
+  color: #f8fafc;
+}
+
+/* The Textarea */
 .input-panel textarea {
   flex: 1;
-
   resize: none;
-
-  background-color: #111827;
-  color: white;
-
+  background-color: transparent;
+  color: #e2e8f0;
+  padding: 12px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 13px;
+  line-height: 1.6;
   border: none;
-
-  padding: 10px;
-
   outline: none;
+}
+
+.input-panel textarea::placeholder {
+  color: #475569;
+  font-style: italic;
+}
+
+/* Subtle focus effect on the whole panel */
+.input-panel:focus-within {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.1);
 }

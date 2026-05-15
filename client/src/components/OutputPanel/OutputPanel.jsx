@@ -1,24 +1,37 @@
 import "./output.css";
 
 function OutputPanel({ output }) {
-
-  const isError =
-    output.includes("error") ||
-    output.includes("Error");
+  // Enhanced error/warning detection
+  const isError = /error|exception|failed/i.test(output);
+  const isWarning = /warning/i.test(output);
 
   return (
-    <div className="output-panel">
+    <div className={`output-panel ${isError ? "has-error" : ""}`}>
+      <div className="output-header">
+        <div className="terminal-dots">
+          <span className="dot red"></span>
+          <span className="dot yellow"></span>
+          <span className="dot green"></span>
+        </div>
+        <span className="output-title">Console Output</span>
+        {output && (
+          <span className={`status-badge ${isError ? "err" : "success"}`}>
+            {isError ? "Execution Failed" : "Success"}
+          </span>
+        )}
+      </div>
 
-      <h2>Output</h2>
-
-      <pre
-        style={{
-          color: isError ? "#ff4d4f" : "#00ff88"
-        }}
-      >
-        {output}
-      </pre>
-
+      <div className="output-body">
+        {output ? (
+          <pre className={isError ? "text-error" : isWarning ? "text-warning" : "text-success"}>
+            {output}
+          </pre>
+        ) : (
+          <div className="output-placeholder">
+            <p>Run your code to see the output here...</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
