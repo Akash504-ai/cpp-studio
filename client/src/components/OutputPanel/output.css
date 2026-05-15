@@ -1,30 +1,93 @@
+/* output.css */
+
 .output-panel {
   flex: 1;
-  background-color: #000000;
-
-  padding: 10px;
-
+  background-color: #0d1117; /* GitHub Dark style */
   display: flex;
   flex-direction: column;
-
-  border-top: 1px solid #374151;
+  overflow: hidden;
+  border-top: 1px solid #30363d;
 }
 
-.output-panel h2 {
-  color: #ffffff;
-  margin-bottom: 10px;
+.output-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background-color: #161b22;
+  border-bottom: 1px solid #30363d;
 }
 
-.output-panel pre {
+/* Terminal dots for that MacOS/Linux console look */
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.red { background-color: #ff5f56; }
+.yellow { background-color: #ffbd2e; }
+.green { background-color: #27c93f; }
+
+.output-title {
+  color: #8b949e;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* Status Badges */
+.status-badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+.status-badge.success { background: #23863633; color: #3fb950; border: 1px solid #238636; }
+.status-badge.err { background: #da363333; color: #f85149; border: 1px solid #da3633; }
+
+.output-body {
   flex: 1;
-
-  color: #00ff88;
-
+  padding: 16px;
   overflow-y: auto;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
 
+.output-body pre {
+  margin: 0;
   white-space: pre-wrap;
+  font-size: 14px;
+  line-height: 1.5;
+}
 
-  font-family: Consolas, monospace;
+/* Text Colors with subtle glow */
+.text-success { 
+  color: #3fb950; 
+  text-shadow: 0 0 5px rgba(63, 185, 80, 0.2); 
+}
 
-  font-size: 15px;
+.text-error { 
+  color: #f85149; 
+  text-shadow: 0 0 5px rgba(248, 81, 73, 0.2); 
+}
+
+.text-warning { 
+  color: #d29922; 
+}
+
+/* Placeholder state */
+.output-placeholder {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #484f58;
+  font-style: italic;
+  font-size: 13px;
 }

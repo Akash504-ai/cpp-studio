@@ -1,31 +1,88 @@
+/* runButton.css */
+
 .run-container {
-  height: 70px;
-
-  background-color: #111827;
-
+  padding: 0 16px;
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  border-top: 1px solid #374151;
+  background-color: transparent; /* Assuming it sits in your new Action Bar */
 }
 
-.run-container button {
-  padding: 12px 24px;
-
-  background-color: #2563eb;
-
+.run-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%); /* Success Green Gradient */
   color: white;
-
   border: none;
-
   border-radius: 6px;
-
+  font-weight: 600;
+  font-size: 13px;
   cursor: pointer;
-
-  font-size: 16px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
 
-.run-container button:hover {
-  background-color: #1d4ed8;
+.run-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+  filter: brightness(1.1);
+}
+
+.run-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.run-btn:disabled {
+  background: #334155;
+  cursor: not-allowed;
+  opacity: 0.8;
+  box-shadow: none;
+}
+
+.btn-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Icons */
+.play-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.shortcut-hint {
+  font-size: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px 4px;
+  border-radius: 3px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 8px;
+  font-family: system-ui;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Spinner Animation */
+.spinner {
+  animation: rotate 2s linear infinite;
+  width: 16px;
+  height: 16px;
+}
+
+.spinner .path {
+  stroke: white;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes dash {
+  0% { stroke-dasharray: 1, 150; stroke-dashoffset: 0; }
+  50% { stroke-dasharray: 90, 150; stroke-dashoffset: -35; }
+  100% { stroke-dasharray: 90, 150; stroke-dashoffset: -124; }
 }
