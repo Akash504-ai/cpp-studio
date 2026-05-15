@@ -34,6 +34,13 @@ The project is designed with a professional IDE-inspired architecture and focuse
 
 ---
 
+# Preview
+
+<img width="1914" height="918" alt="image" src="https://github.com/user-attachments/assets/9e174b2a-6dfd-4299-9008-a5acea73138a" />
+
+
+---
+
 # Tech Stack
 
 ## Frontend
