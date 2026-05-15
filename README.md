@@ -59,73 +59,96 @@ The project is designed with a professional IDE-inspired architecture and focuse
 
 # System Architecture
 
-```text
-+------------------------------------------------------+
-|                      CLIENT                          |
-|------------------------------------------------------|
-|                                                      |
-|  Monaco Editor                                       |
-|  Input Panel                                         |
-|  Output Console                                      |
-|  Navbar / Toolbar                                    |
-|                                                      |
-+-------------------------+----------------------------+
-                          |
-                          |
-                          v
-+------------------------------------------------------+
-|                    REACT FRONTEND                    |
-|------------------------------------------------------|
-|                                                      |
-|  Home.jsx                                            |
-|  CodeEditor.jsx                                      |
-|  InputPanel.jsx                                      |
-|  OutputPanel.jsx                                     |
-|  Navbar.jsx                                          |
-|                                                      |
-+-------------------------+----------------------------+
-                          |
-                          | HTTP Request
-                          |
-                          v
-+------------------------------------------------------+
-|                    EXPRESS SERVER                    |
-|------------------------------------------------------|
-|                                                      |
-|  executeRoutes.js                                    |
-|  executeController.js                                |
-|                                                      |
-+-------------------------+----------------------------+
-                          |
-                          |
-                          v
-+------------------------------------------------------+
-|                  COMPILATION SERVICE                 |
-|------------------------------------------------------|
-|                                                      |
-|  compileCpp.js                                       |
-|                                                      |
-|  - Generates code.cpp                                |
-|  - Generates input.txt                               |
-|  - Runs g++ compiler                                 |
-|  - Executes binary                                   |
-|  - Captures stdout/stderr                            |
-|                                                      |
-+-------------------------+----------------------------+
-                          |
-                          |
-                          v
-+------------------------------------------------------+
-|                  TEMP EXECUTION FILES                |
-|------------------------------------------------------|
-|                                                      |
-|  temp/code.cpp                                       |
-|  temp/input.txt                                      |
-|  temp/program.exe                                    |
-|                                                      |
-+------------------------------------------------------+
-```
+```mermaid
+graph TD
 
+%% ================= FRONTEND =================
+subgraph FRONTEND [Frontend Layer]
+
+A1[React Application]
+A2[Monaco Editor]
+A3[Input Panel]
+A4[Output Console]
+A5[Navbar and Toolbar]
+A6[Axios API Service]
+
+end
+
+%% ================= BACKEND =================
+subgraph BACKEND [Backend Layer]
+
+B1[Express Server]
+B2[Execute Route]
+B3[Execution Controller]
+B4[Compilation Service]
+B5[Child Process Executor]
+B6[Temporary File Manager]
+
+end
+
+%% ================= COMPILER =================
+subgraph COMPILER [C++ Compilation Layer]
+
+C1[g++ Compiler]
+C2[Executable Binary]
+C3[Standard Input Stream]
+C4[Standard Output Stream]
+C5[Compilation Error Stream]
+
+end
+
+%% ================= FILE SYSTEM =================
+subgraph FILESYSTEM [Temporary Execution Files]
+
+D1[code.cpp]
+D2[input.txt]
+D3[program.exe]
+
+end
+
+%% ================= FLOW =================
+
+%% Frontend Internal
+A1 --> A2
+A1 --> A3
+A1 --> A4
+A1 --> A5
+A1 --> A6
+
+%% Frontend to Backend
+A6 -->|POST /api/execute| B1
+
+%% Backend Internal Flow
+B1 --> B2
+B2 --> B3
+B3 --> B4
+B4 --> B5
+B4 --> B6
+
+%% File Generation
+B6 --> D1
+B6 --> D2
+
+%% Compilation
+B5 -->|Compile Source| C1
+C1 --> D3
+
+%% Runtime Execution
+D3 --> C2
+D2 --> C3
+C2 --> C4
+
+%% Error Handling
+C1 --> C5
+
+%% Return Output
+C4 -->|stdout| B3
+C5 -->|stderr| B3
+
+%% Backend to Frontend
+B3 -->|JSON Response| A6
+A6 --> A4
+```
 ---
 
 # Project Structure
